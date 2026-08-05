@@ -1,15 +1,38 @@
-Replace these files:
-- lib/services/auth_service.dart
-- lib/app/app_controller.dart
-- lib/features/auth/login_screen.dart
+# Auto Mute
 
-Add to pubspec.yaml under dependencies:
-  crypto: ^3.0.7
+Auto Mute is a cross-platform Flutter application designed to manage phone
+sound modes according to user-defined meeting schedules.
 
-Run:
+## Main Features
+
+- Create, edit, delete, enable and disable schedules
+- Silent and vibration meeting modes
+- Local meeting reminder notifications
+- Android Do Not Disturb integration
+- English, Nepali and Hindi localisation
+- World clock support
+- JSON schedule import
+- Offline local storage
+- Light, dark and system themes
+- Responsive mobile and web interface
+
+## Technologies Used
+
+- Flutter
+- Dart
+- Provider
+- SharedPreferences
+- Flutter Local Notifications
+- File Picker
+- JSON
+- Android platform integration
+
+## Run the Project
+
+```bash
 flutter clean
 flutter pub get
 flutter gen-l10n
-dart format lib
 flutter analyze
-flutter run -d chrome
+flutter test
+flutter run
