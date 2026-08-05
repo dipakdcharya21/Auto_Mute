@@ -42,12 +42,9 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
     final l = AppLocalizations.of(context);
     final controller = context.watch<AppController>();
 
-    final schedules = _filteredSchedules(
-      controller.schedules,
-    );
+    final schedules = _filteredSchedules(controller.schedules);
 
-    final enabledCount =
-        controller.schedules.where((schedule) => schedule.enabled).length;
+    final enabledCount = controller.schedules.where((schedule) => schedule.enabled).length;
 
     final disabledCount = controller.schedules.length - enabledCount;
 
@@ -82,176 +79,180 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
                 _import(context);
               },
             )
-          : Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _ScheduleSummary(
-                  total: controller.schedules.length,
-                  enabled: enabledCount,
-                  disabled: disabledCount,
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  controller: _searchController,
-                  textInputAction: TextInputAction.search,
-                  decoration: InputDecoration(
-                    labelText: l.search,
-                    hintText: l.search,
-                    prefixIcon: const Icon(Icons.search_rounded),
-                    suffixIcon: _searchController.text.isEmpty
-                        ? null
-                        : IconButton(
-                            tooltip: l.clearData,
-                            onPressed: () {
-                              _searchController.clear();
-                              setState(() {});
-                            },
-                            icon: const Icon(Icons.close_rounded),
-                          ),
+          : SingleChildScrollView(
+              padding: const EdgeInsets.only(bottom: 100),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _ScheduleSummary(
+                    total: controller.schedules.length,
+                    enabled: enabledCount,
+                    disabled: disabledCount,
                   ),
-                  onChanged: (_) {
-                    setState(() {});
-                  },
-                ),
-                const SizedBox(height: 14),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      _FilterChip(
-                        label: l.allDays,
-                        icon: Icons.view_list_rounded,
-                        selected: _selectedFilter == _ScheduleFilter.all,
-                        onSelected: () {
-                          _selectFilter(_ScheduleFilter.all);
-                        },
-                      ),
-                      _FilterChip(
-                        label: l.active,
-                        icon: Icons.check_circle_outline_rounded,
-                        selected: _selectedFilter == _ScheduleFilter.enabled,
-                        onSelected: () {
-                          _selectFilter(_ScheduleFilter.enabled);
-                        },
-                      ),
-                      _FilterChip(
-                        label: l.inactive,
-                        icon: Icons.pause_circle_outline_rounded,
-                        selected: _selectedFilter == _ScheduleFilter.disabled,
-                        onSelected: () {
-                          _selectFilter(_ScheduleFilter.disabled);
-                        },
-                      ),
-                      _FilterChip(
-                        label: l.silent,
-                        icon: Icons.volume_off_rounded,
-                        selected: _selectedFilter == _ScheduleFilter.silent,
-                        onSelected: () {
-                          _selectFilter(_ScheduleFilter.silent);
-                        },
-                      ),
-                      _FilterChip(
-                        label: l.vibration,
-                        icon: Icons.vibration_rounded,
-                        selected: _selectedFilter == _ScheduleFilter.vibration,
-                        onSelected: () {
-                          _selectFilter(_ScheduleFilter.vibration);
-                        },
-                      ),
-                    ],
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: _searchController,
+                    textInputAction: TextInputAction.search,
+                    decoration: InputDecoration(
+                      labelText: l.search,
+                      hintText: l.search,
+                      prefixIcon: const Icon(Icons.search_rounded),
+                      suffixIcon: _searchController.text.isEmpty
+                          ? null
+                          : IconButton(
+                              tooltip: l.close,
+                              onPressed: () {
+                                _searchController.clear();
+
+                                setState(() {
+                                  _selectedFilter = _ScheduleFilter.all;
+                                });
+                              },
+                              icon: const Icon(Icons.close_rounded),
+                            ),
+                    ),
+                    onChanged: (_) {
+                      setState(() {});
+                    },
                   ),
-                ),
-                const SizedBox(height: 16),
-                Expanded(
-                  child: schedules.isEmpty
-                      ? _NoSearchResults(
-                          onClear: () {
-                            _searchController.clear();
-                            setState(() {
-                              _selectedFilter = _ScheduleFilter.all;
-                            });
+                  const SizedBox(height: 14),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        _FilterChip(
+                          label: l.allDays,
+                          icon: Icons.view_list_rounded,
+                          selected: _selectedFilter == _ScheduleFilter.all,
+                          onSelected: () {
+                            _selectFilter(_ScheduleFilter.all);
                           },
-                        )
-                      : LayoutBuilder(
-                          builder: (context, constraints) {
-                            final columns = constraints.maxWidth >= 1050
-                                ? 3
-                                : constraints.maxWidth >= 680
-                                    ? 2
-                                    : 1;
+                        ),
+                        _FilterChip(
+                          label: l.active,
+                          icon: Icons.check_circle_outline_rounded,
+                          selected: _selectedFilter == _ScheduleFilter.enabled,
+                          onSelected: () {
+                            _selectFilter(_ScheduleFilter.enabled);
+                          },
+                        ),
+                        _FilterChip(
+                          label: l.inactive,
+                          icon: Icons.pause_circle_outline_rounded,
+                          selected: _selectedFilter == _ScheduleFilter.disabled,
+                          onSelected: () {
+                            _selectFilter(_ScheduleFilter.disabled);
+                          },
+                        ),
+                        _FilterChip(
+                          label: l.silent,
+                          icon: Icons.volume_off_rounded,
+                          selected: _selectedFilter == _ScheduleFilter.silent,
+                          onSelected: () {
+                            _selectFilter(_ScheduleFilter.silent);
+                          },
+                        ),
+                        _FilterChip(
+                          label: l.vibration,
+                          icon: Icons.vibration_rounded,
+                          selected: _selectedFilter == _ScheduleFilter.vibration,
+                          onSelected: () {
+                            _selectFilter(_ScheduleFilter.vibration);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  if (schedules.isEmpty)
+                    _NoSearchResults(
+                      onClear: () {
+                        _searchController.clear();
 
-                            if (columns == 1) {
-                              return ListView.separated(
-                                padding: const EdgeInsets.only(
-                                  bottom: 92,
-                                ),
-                                itemCount: schedules.length,
-                                separatorBuilder: (_, __) =>
-                                    const SizedBox(height: 12),
-                                itemBuilder: (context, index) {
-                                  final schedule = schedules[index];
+                        setState(() {
+                          _selectedFilter = _ScheduleFilter.all;
+                        });
+                      },
+                    )
+                  else
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        final columns = constraints.maxWidth >= 1050
+                            ? 3
+                            : constraints.maxWidth >= 680
+                                ? 2
+                                : 1;
 
-                                  return _ScheduleCard(
-                                    schedule: schedule,
-                                    onToggle: (value) {
-                                      controller.toggleSchedule(
-                                        schedule,
-                                        value,
-                                      );
-                                    },
-                                    onEdit: () {
-                                      _openEditor(context, schedule);
-                                    },
-                                    onDelete: () {
-                                      _confirmDelete(
-                                        context,
-                                        schedule,
-                                      );
-                                    },
+                        if (columns == 1) {
+                          return ListView.separated(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: schedules.length,
+                            separatorBuilder: (_, __) {
+                              return const SizedBox(height: 12);
+                            },
+                            itemBuilder: (context, index) {
+                              final schedule = schedules[index];
+
+                              return _ScheduleCard(
+                                schedule: schedule,
+                                onToggle: (value) {
+                                  controller.toggleSchedule(
+                                    schedule,
+                                    value,
+                                  );
+                                },
+                                onEdit: () {
+                                  _openEditor(context, schedule);
+                                },
+                                onDelete: () {
+                                  _confirmDelete(
+                                    context,
+                                    schedule,
                                   );
                                 },
                               );
-                            }
+                            },
+                          );
+                        }
 
-                            return GridView.builder(
-                              padding: const EdgeInsets.only(
-                                bottom: 92,
-                              ),
-                              itemCount: schedules.length,
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: columns,
-                                crossAxisSpacing: 14,
-                                mainAxisSpacing: 14,
-                                mainAxisExtent: 225,
-                              ),
-                              itemBuilder: (context, index) {
-                                final schedule = schedules[index];
+                        return GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: schedules.length,
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: columns,
+                            crossAxisSpacing: 14,
+                            mainAxisSpacing: 14,
+                            mainAxisExtent: 235,
+                          ),
+                          itemBuilder: (context, index) {
+                            final schedule = schedules[index];
 
-                                return _ScheduleCard(
-                                  schedule: schedule,
-                                  onToggle: (value) {
-                                    controller.toggleSchedule(
-                                      schedule,
-                                      value,
-                                    );
-                                  },
-                                  onEdit: () {
-                                    _openEditor(context, schedule);
-                                  },
-                                  onDelete: () {
-                                    _confirmDelete(
-                                      context,
-                                      schedule,
-                                    );
-                                  },
+                            return _ScheduleCard(
+                              schedule: schedule,
+                              onToggle: (value) {
+                                controller.toggleSchedule(
+                                  schedule,
+                                  value,
+                                );
+                              },
+                              onEdit: () {
+                                _openEditor(context, schedule);
+                              },
+                              onDelete: () {
+                                _confirmDelete(
+                                  context,
+                                  schedule,
                                 );
                               },
                             );
                           },
-                        ),
-                ),
-              ],
+                        );
+                      },
+                    ),
+                ],
+              ),
             ),
     );
   }
@@ -268,8 +269,7 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
     final search = _searchController.text.trim().toLowerCase();
 
     final filtered = schedules.where((schedule) {
-      final matchesSearch =
-          search.isEmpty || schedule.title.toLowerCase().contains(search);
+      final matchesSearch = search.isEmpty || schedule.title.toLowerCase().contains(search);
 
       if (!matchesSearch) {
         return false;
@@ -306,8 +306,8 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
   Future<void> _openEditor(
     BuildContext context, [
     MeetingSchedule? schedule,
-  ]) {
-    return Navigator.of(context).push(
+  ]) async {
+    await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) {
           return ScheduleEditorScreen(
@@ -316,6 +316,10 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
         },
       ),
     );
+
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   Future<void> _import(BuildContext context) async {
@@ -345,7 +349,9 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
         utf8.decode(bytes),
       );
 
-      await context.read<AppController>().replaceSchedules(schedules);
+      await context.read<AppController>().replaceSchedules(
+            schedules,
+          );
 
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -406,7 +412,9 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
                   onPressed: () {
                     Navigator.pop(dialogContext, true);
                   },
-                  icon: const Icon(Icons.delete_outline_rounded),
+                  icon: const Icon(
+                    Icons.delete_outline_rounded,
+                  ),
                   label: Text(l.delete),
                 ),
               ],
@@ -416,7 +424,9 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
         false;
 
     if (confirmed && context.mounted) {
-      await context.read<AppController>().deleteSchedule(schedule.id);
+      await context.read<AppController>().deleteSchedule(
+            schedule.id,
+          );
 
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -659,9 +669,7 @@ class _ScheduleCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Icon(
-                      isSilent
-                          ? Icons.volume_off_rounded
-                          : Icons.vibration_rounded,
+                      isSilent ? Icons.volume_off_rounded : Icons.vibration_rounded,
                       color: scheme.onPrimaryContainer,
                     ),
                   ),
@@ -697,8 +705,8 @@ class _ScheduleCard extends StatelessWidget {
               const SizedBox(height: 15),
               _ScheduleDetail(
                 icon: Icons.access_time_rounded,
-                text:
-                    '${_time(schedule.startMinutes)} – ${_time(schedule.endMinutes)}',
+                text: '${_time(schedule.startMinutes)} – '
+                    '${_time(schedule.endMinutes)}',
               ),
               const SizedBox(height: 8),
               _ScheduleDetail(
@@ -713,9 +721,7 @@ class _ScheduleCard extends StatelessWidget {
                     child: Text(
                       schedule.enabled ? l.active : l.inactive,
                       style: theme.textTheme.labelMedium?.copyWith(
-                        color: schedule.enabled
-                            ? Colors.green
-                            : scheme.onSurfaceVariant,
+                        color: schedule.enabled ? Colors.green : scheme.onSurfaceVariant,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -795,36 +801,37 @@ class _NoSearchResults extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
 
-    return Center(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              Icons.search_off_rounded,
-              size: 68,
-              color: Theme.of(context).colorScheme.primary,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              l.noSchedulesTitle,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              l.noSchedules,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 20),
-            OutlinedButton.icon(
-              onPressed: onClear,
-              icon: const Icon(Icons.refresh_rounded),
-              label: Text(l.refresh),
-            ),
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 24,
+        vertical: 44,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            Icons.search_off_rounded,
+            size: 68,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            l.noSchedulesTitle,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            l.noSchedules,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 20),
+          OutlinedButton.icon(
+            onPressed: onClear,
+            icon: const Icon(Icons.refresh_rounded),
+            label: Text(l.refresh),
+          ),
+        ],
       ),
     );
   }
@@ -844,54 +851,53 @@ class _EmptyState extends StatelessWidget {
     final l = AppLocalizations.of(context);
     final scheme = Theme.of(context).colorScheme;
 
-    return Center(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 104,
-                height: 104,
-                decoration: BoxDecoration(
-                  color: scheme.primaryContainer,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: Icon(
-                  Icons.event_busy_rounded,
-                  size: 54,
-                  color: scheme.onPrimaryContainer,
-                ),
-              ),
-              const SizedBox(height: 22),
-              Text(
-                l.noSchedulesTitle,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.w800,
-                    ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                l.noSchedules,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 24),
-              FilledButton.icon(
-                onPressed: onAdd,
-                icon: const Icon(Icons.add_rounded),
-                label: Text(l.addSchedule),
-              ),
-              const SizedBox(height: 8),
-              TextButton.icon(
-                onPressed: onImport,
-                icon: const Icon(Icons.upload_file_rounded),
-                label: Text(l.importJson),
-              ),
-            ],
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 24,
+        vertical: 44,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 104,
+            height: 104,
+            decoration: BoxDecoration(
+              color: scheme.primaryContainer,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: Icon(
+              Icons.event_busy_rounded,
+              size: 54,
+              color: scheme.onPrimaryContainer,
+            ),
           ),
-        ),
+          const SizedBox(height: 22),
+          Text(
+            l.noSchedulesTitle,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.w800,
+                ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            l.noSchedules,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 24),
+          FilledButton.icon(
+            onPressed: onAdd,
+            icon: const Icon(Icons.add_rounded),
+            label: Text(l.addSchedule),
+          ),
+          const SizedBox(height: 8),
+          TextButton.icon(
+            onPressed: onImport,
+            icon: const Icon(Icons.upload_file_rounded),
+            label: Text(l.importJson),
+          ),
+        ],
       ),
     );
   }
