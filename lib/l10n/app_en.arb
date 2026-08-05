@@ -1,0 +1,387 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "Auto Silent",
+
+  "dashboard": "Home",
+  "schedules": "Schedules",
+  "worldClock": "World Clock",
+  "settings": "Settings",
+
+  "normalMode": "Normal Mode",
+  "silentMode": "Silent Mode",
+  "vibrationMode": "Vibration Mode",
+
+  "noActiveMeeting": "No meeting is active right now",
+
+  "privacyTitle": "Privacy",
+  "privacyDescription": "No analytics, tracking, cloud storage or network requests. Your data stays only on this device.",
+
+  "scheduleCount": "{count, plural, =0{No schedules} =1{1 schedule} other{{count} schedules}}",
+  "@scheduleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "offlineOnly": "Stored locally as JSON",
+
+  "importJson": "Import JSON",
+
+  "importSuccess": "Imported {count} schedules",
+  "@importSuccess": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "noSchedules": "Create your first meeting schedule or import a JSON file.",
+  "noSchedulesTitle": "No schedules yet",
+
+  "addSchedule": "Add Schedule",
+  "editSchedule": "Edit Schedule",
+
+  "title": "Schedule Title",
+  "requiredField": "This field is required.",
+
+  "startTime": "Start Time",
+  "endTime": "End Time",
+  "time": "Time",
+
+  "days": "Repeat On",
+
+  "mode": "Phone Mode",
+
+  "reminder": "Reminder",
+
+  "minutesBefore": "{minutes, plural, =0{No reminder} =1{1 minute before} other{{minutes} minutes before}}",
+  "@minutesBefore": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+
+  "enabled": "Schedule Enabled",
+  "enabledDescription": "The app will automatically apply this schedule when the selected time arrives.",
+
+  "save": "Save Schedule",
+
+  "language": "Language",
+
+  "english": "English",
+  "nepali": "Nepali",
+  "hindi": "Hindi",
+  "chinese": "Chinese",
+  "spanish": "Spanish",
+  "french": "French",
+
+  "notifications": "Meeting Reminders",
+  "notificationDescription": "Receive a local notification before each meeting.",
+
+  "dndAccess": "Do Not Disturb Access",
+  "dndExplanation": "Android requires this permission to change Silent or Vibration mode automatically.",
+
+  "openSettings": "Open Settings",
+
+  "permissionTitle": "Permission Required",
+
+  "notificationPermissionExplanation": "Notifications are used only for local reminders. No data leaves your device.",
+
+  "dndPermissionExplanation": "Android requires Do Not Disturb permission before the app can automatically change phone mode.",
+
+  "cancel": "Cancel",
+  "continueLabel": "Continue",
+
+  "sydney": "Sydney",
+  "london": "London",
+  "newYork": "New York",
+  "tokyo": "Tokyo",
+  "kathmandu": "Kathmandu",
+
+  "cityName": "{key, select, sydney{Sydney} london{London} newYork{New York} tokyo{Tokyo} kathmandu{Kathmandu} other{Unknown}}",
+  "@cityName": {
+    "placeholders": {
+      "key": {
+        "type": "String"
+      }
+    }
+  },
+
+  "weekdayShort": "{day, select, mon{Mon} tue{Tue} wed{Wed} thu{Thu} fri{Fri} sat{Sat} sun{Sun} other{?}}",
+  "@weekdayShort": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+
+  "manageSchedules": "Manage Schedules",
+
+  "fiveCities": "Live Time",
+
+  "permissionsAndLanguage": "Permissions and Language",
+
+  "nextMeeting": "Next Meeting",
+
+  "options": "Options",
+
+  "selectOneDay": "Select at least one day.",
+
+  "delete": "Delete",
+
+  "deleteScheduleTitle": "Delete Schedule?",
+
+  "deleteScheduleMessage": "Delete \"{title}\"? This action cannot be undone.",
+  "@deleteScheduleMessage": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+
+  "permissions": "Permissions",
+
+  "platformLimitation": "Automatic phone mode changes are available only on Android. Schedules and reminders continue to work on every platform.",
+
+  "permissionDenied": "Permission was not granted.",
+
+  "loadError": "Unable to load local schedules.",
+
+  "retry": "Retry",
+
+  "importInvalidJson": "The selected file is not valid JSON.",
+
+  "importInvalidRoot": "The JSON root must be an object.",
+
+  "importMissingSchedules": "The JSON must contain a schedules array.",
+
+  "importInvalidSchedule": "One or more schedules are invalid.",
+
+  "importInvalidTitle": "Every schedule must have a title.",
+
+  "importInvalidTime": "Start and end times must be valid.",
+
+  "importInvalidDays": "Weekdays must be between Monday and Sunday.",
+
+  "importInvalidMode": "Mode must be Silent or Vibration.",
+
+  "importInvalidReminder": "Reminder must be between 0 and 120 minutes.",
+
+  "importEmptyFile": "The selected file is empty.",
+
+  "signIn": "Sign In",
+
+  "signInSubtitle": "Use your details to continue.",
+
+  "email": "Email",
+
+  "password": "Password",
+
+  "emailRequired": "Enter your email address.",
+
+  "emailInvalid": "Enter a valid email address.",
+
+  "passwordRequired": "Enter your password.",
+
+  "passwordTooShort": "Password must contain at least 4 characters.",
+
+  "showPassword": "Show Password",
+
+  "hidePassword": "Hide Password",
+
+  "signingIn": "Signing In…",
+
+  "invalidCredentials": "Incorrect email or password.",
+
+  "demoCredentials": "Demo login: student@ict107.edu • Password: ict107",
+
+  "loginWelcome": "Automatically manage silent or vibration mode around your university meetings.",
+
+  "loginFeatureSchedules": "Create and manage weekly meeting schedules",
+
+  "loginFeatureClock": "View live time",
+
+  "loginFeaturePrivacy": "All application data remains on this device",
+
+  "account": "Account",
+
+  "signOut": "Sign Out",
+
+  "signOutConfirmation": "Sign out of this device? Your schedules will remain stored locally.",
+
+  "appearance": "Appearance",
+
+  "systemTheme": "System",
+
+  "lightTheme": "Light",
+
+  "darkTheme": "Dark",
+
+  "lightMode": "Light Mode",
+
+  "darkMode": "Dark Mode",
+
+  "systemMode": "System Default",
+
+  "themeDescription": "Choose how the application looks on this device.",
+
+  "profile": "Profile",
+
+  "welcomeBack": "Welcome Back",
+
+  "goodMorning": "Good Morning",
+
+  "goodAfternoon": "Good Afternoon",
+
+  "goodEvening": "Good Evening",
+
+  "currentStatus": "Current Status",
+
+  "todaysMeetings": "Today's Meetings",
+
+  "quickActions": "Quick Actions",
+
+  "viewAll": "View All",
+
+  "meetingStarted": "Meeting Started",
+
+  "meetingEnded": "Meeting Ended",
+
+  "startsIn": "Starts In",
+
+  "noUpcomingMeetings": "No upcoming meetings",
+
+  "createMeeting": "Create Meeting",
+
+  "uploadJson": "Upload JSON",
+
+  "chooseFile": "Choose File",
+
+  "uploadSuccessful": "Upload successful",
+
+  "uploadFailed": "Upload failed",
+
+  "exportJson": "Export JSON",
+
+  "clearData": "Clear Data",
+
+  "clearDataTitle": "Clear all local data?",
+
+  "clearDataMessage": "This will permanently remove all saved schedules and settings from this device.",
+
+  "confirm": "Confirm",
+
+  "yes": "Yes",
+
+  "no": "No",
+
+  "about": "About",
+
+  "aboutDescription": "ICT107 Auto Silent is an offline university project for managing meeting schedules, reminders, world clocks and supported phone modes.",
+
+  "search": "Search",
+
+  "filterByDay": "Filter by day",
+
+  "calendarView": "Calendar View",
+
+  "listView": "List View",
+
+  "allDays": "All Days",
+
+  "monday": "Monday",
+
+  "tuesday": "Tuesday",
+
+  "wednesday": "Wednesday",
+
+  "thursday": "Thursday",
+
+  "friday": "Friday",
+
+  "saturday": "Saturday",
+
+  "sunday": "Sunday",
+
+  "normal": "Normal",
+
+  "silent": "Silent",
+
+  "vibration": "Vibration",
+
+  "active": "Active",
+
+  "inactive": "Inactive",
+
+  "loading": "Loading…",
+
+  "error": "Error",
+
+  "success": "Success",
+
+  "close": "Close",
+
+  "edit": "Edit",
+
+  "back": "Back",
+
+  "refresh": "Refresh",
+
+  "homeTooltip": "Open home",
+
+  "schedulesTooltip": "Open schedules",
+
+  "worldClockTooltip": "Open world clock",
+
+  "settingsTooltip": "Open settings",
+
+  "languageTooltip": "Change language",
+
+  "notificationTooltip": "Notification settings",
+
+  "menuTooltip": "Open menu",
+
+  "passwordVisibilityTooltip": "Show or hide password",
+
+  "scheduleSaved": "Schedule saved successfully.",
+
+  "scheduleDeleted": "Schedule deleted successfully.",
+
+  "settingsSaved": "Settings saved successfully.",
+
+  "dataCleared": "Local data cleared successfully.",
+
+  "unsupportedFeature": "This feature is not supported on this platform.",
+
+  "androidModeSupport": "Android can automatically change the device sound mode after permission is granted.",
+
+  "otherPlatformModeSupport": "On this platform, the app displays the active meeting mode and sends supported reminders but cannot change the global device sound mode.",
+
+  "selectLanguage": "Select Language",
+
+  "selectMode": "Select Phone Mode",
+
+  "selectDays": "Select Meeting Days",
+
+  "invalidSchedule": "Please check the schedule information and try again.",
+
+  "startBeforeEnd": "Start and end times cannot be the same.",
+
+  "noFileSelected": "No file was selected.",
+
+  "localStorage": "Local Storage",
+
+  "localStorageDescription": "Schedules and settings are saved locally on this device.",
+
+  "version": "Version",
+
+  "logoutSuccess": "You have been signed out."
+}
