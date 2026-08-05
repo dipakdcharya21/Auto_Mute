@@ -901,7 +901,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutDescription.
   ///
   /// In en, this message translates to:
-  /// **'ICT107 Auto Silent is an offline university project for managing meeting schedules, reminders, world clocks and supported phone modes.'**
+  /// **'Auto Silent is an offline university project for managing meeting schedules, reminders, world clocks and supported phone modes.'**
   String get aboutDescription;
 
   /// No description provided for @search.

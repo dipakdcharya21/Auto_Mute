@@ -51,7 +51,7 @@ flutter run -d <device-id>
 
 ## Android permissions
 
-The manifest already declares notification, audio-setting, Do Not Disturb policy, and reboot permissions. In the app, open **Settings → Do Not Disturb access**, read the explanation, continue to Android settings, and enable access for ICT107 Auto Silent.
+The manifest already declares notification, audio-setting, Do Not Disturb policy, and reboot permissions. In the app, open **Settings → Do Not Disturb access**, read the explanation, continue to Android settings, and enable access for Auto Silent.
 
 Android 13 and later also show the notification permission prompt when meeting reminders are enabled.
 

@@ -476,7 +476,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aboutDescription =>
-      'ICT107 Auto Silent is an offline university project for managing meeting schedules, reminders, world clocks and supported phone modes.';
+      'Auto Silent is an offline university project for managing meeting schedules, reminders, world clocks and supported phone modes.';
 
   @override
   String get search => 'Search';

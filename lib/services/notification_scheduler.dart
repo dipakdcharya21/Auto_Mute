@@ -55,7 +55,7 @@ class NotificationScheduler {
       iOS: DarwinInitializationSettings(),
       macOS: DarwinInitializationSettings(),
       windows: WindowsInitializationSettings(
-        appName: 'ICT107 Auto Silent',
+        appName: ' Auto Silent',
         appUserModelId: 'ICT107.AutoSilent.App',
         guid: '6d9ab8b7-7ad3-4d13-b493-2d6cb3efe913',
       ),
@@ -311,7 +311,7 @@ class NotificationScheduler {
 
     await _plugin.show(
       id: 999,
-      title: 'ICT107 Auto Silent',
+      title: ' Auto Silent',
       body: _notificationMessage(
         event: NotificationEvent.reminder,
         languageCode: languageCode,

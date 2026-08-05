@@ -474,7 +474,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get aboutDescription =>
-      'ICT107 Auto Silent मीटिंग शेड्यूल, रिमाइंडर, विश्व घड़ी और समर्थित फ़ोन मोड प्रबंधित करने वाला ऑफ़लाइन विश्वविद्यालय प्रोजेक्ट है।';
+      ' Auto Silent मीटिंग शेड्यूल, रिमाइंडर, विश्व घड़ी और समर्थित फ़ोन मोड प्रबंधित करने वाला ऑफ़लाइन विश्वविद्यालय प्रोजेक्ट है।';
 
   @override
   String get search => 'खोजें';

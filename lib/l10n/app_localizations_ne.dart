@@ -474,7 +474,7 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get aboutDescription =>
-      'ICT107 Auto Silent एउटा अफलाइन विश्वविद्यालय परियोजना हो जसले बैठक तालिका, सम्झाउने सूचना, विश्व घडी र फोन मोड व्यवस्थापन गर्न मद्दत गर्छ।';
+      'Auto Silent एउटा अफलाइन विश्वविद्यालय परियोजना हो जसले बैठक तालिका, सम्झाउने सूचना, विश्व घडी र फोन मोड व्यवस्थापन गर्न मद्दत गर्छ।';
 
   @override
   String get search => 'खोज्नुहोस्';

@@ -7,12 +7,12 @@ void main() {
       const MaterialApp(
         home: Scaffold(
           body: Center(
-            child: Text('ICT107 Auto Silent'),
+            child: Text(' Auto Silent'),
           ),
         ),
       ),
     );
 
-    expect(find.text('ICT107 Auto Silent'), findsOneWidget);
+    expect(find.text(' Auto Silent'), findsOneWidget);
   });
 }
